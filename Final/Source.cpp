@@ -1,126 +1,1082 @@
 #include <iostream>
 #include <stdlib.h>
+#include <Windows.h>
+#include <mmsystem.h>
+#include <mciapi.h>
+#pragma comment(lib, "Winmm.lib")
 
 using namespace std;
 
 int main(){
+	mciSendString("open \"play.mp3\" type mpegvideo alias mp3", NULL, 0, NULL);
+	mciSendString("play mp3 repeat", NULL, 0, NULL);
+
 	/*cout << "Welcome to Sudoku, the game for lonely people." << endl;
 	cout << "But I'm the one who had time to actually make it... " << endl;
 	cout << ":( " << endl;
 	cout << "ANYWAYS.." << endl;
 	cout << "Go ahead and start." << endl;
 	cout << endl;
-	cout << " __ __ __    __ __ __    __ __ __ " << endl <<
-			"|  |  |  |  |  |  |  |  |  |  |  |" << endl <<
-			"|__|__|__|  |__|__|__|  |__|__|__|" << endl <<
-			"|  |  |  |  |  |  |  |  |  |  |  |" << endl <<
-			"|__|__|__|  |__|__|__|  |__|__|__|" << endl <<
-			"|  |  |  |  |  |  |  |  |  |  |  |" << endl <<
-			"|__|__|__|  |__|__|__|  |__|__|__|" << endl << endl <<
-			" __ __ __    __ __ __    __ __ __ " << endl <<
-			"|  |  |  |  |  |  |  |  |  |  |  |" << endl <<
-			"|__|__|__|  |__|__|__|  |__|__|__|" << endl <<
-			"|  |  |  |  |  |  |  |  |  |  |  |" << endl <<
-			"|__|__|__|  |__|__|__|  |__|__|__|" << endl <<
-			"|  |  |  |  |  |  |  |  |  |  |  |" << endl <<
-			"|__|__|__|  |__|__|__|  |__|__|__|" << endl << endl <<
-			" __ __ __    __ __ __    __ __ __ " << endl <<
-			"|  |  |  |  |  |  |  |  |  |  |  |" << endl <<
-			"|__|__|__|  |__|__|__|  |__|__|__|" << endl <<
-			"|  |  |  |  |  |  |  |  |  |  |  |" << endl <<
-			"|__|__|__|  |__|__|__|  |__|__|__|" << endl <<
-			"|  |  |  |  |  |  |  |  |  |  |  |" << endl <<
-			"|__|__|__|  |__|__|__|  |__|__|__|" << endl << endl;
+	*/
 
-
-	int height = 0;
-	int length = 0;
-	int num = 0;
-	/*
+char place = 0;
+	char num = 0;
+	char  sudoku[82] = {'o', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '?', '@', '#', '$', '%', '^', '&', '*', '-', '~', '+', '=', ';', ':', '<', '>', '/', '(', ')', '.', ',', '`', '"', '}', '{', ']', '[', '_' };
+do{
 	
-	cout << "Pick a position top to bottom and left to right" << endl;
-	cin >> x;
+	cout << " _____ _____ _____   _____ _____ _____   _____ _____ _____" << endl <<
+		"|     |     |     | |     |     |     | |     |     |     |     " << endl <<
+		"|  " <<  sudoku[1] << "  |  " <<  sudoku[2] << "  |  " <<  sudoku[3] << "  | |  " <<  sudoku[4] << "  |  " <<  sudoku[5] << "  |  " <<  sudoku[6] << "  | |  " <<  sudoku[7] << "  |  " <<  sudoku[8] << "  |  " <<  sudoku[9] << "  |  " << endl <<
 
-	if (x > 9 || x < 1){
-		cout << x << " is an invalid number, try again" << endl << endl;
-		cin >> x;
-	}
-	cin >> y;
+		"|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl <<
+		"|     |     |     | |     |     |     | |     |     |     |" << endl <<
 
-	if (y > 9 || y < 1){
-		cout << y << " is an invalid number, try again" << endl << endl;
-		cin >> y;
-	}
-	cout << "which number goes there?" << endl;
-	cin >> num;
 
-	if (num > 9 || num < 1){
-		cout << num << " is an invalid number, try again" << endl << endl;
+		"|  " <<  sudoku[10] << "  |  " <<  sudoku[11] << "  |  " <<  sudoku[12] << "  | |  " <<  sudoku[13] << "  |  " <<  sudoku[14] << "  |  " <<  sudoku[15] << "  | |  " <<  sudoku[16] << "  |  " <<  sudoku[17] << "  |  " <<  sudoku[18] << "  |  " << endl <<
+
+		"|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl <<
+		"|     |     |     | |     |     |     | |     |     |     |" << endl <<
+
+
+		"|  " <<  sudoku[19] << "  |  " <<  sudoku[20] << "  |  " <<  sudoku[21] << "  | |  " <<  sudoku[22] << "  |  " <<  sudoku[23] << "  |  " <<  sudoku[24] << "  | |  " <<  sudoku[25] << "  |  " <<  sudoku[26] << "  |  " <<  sudoku[27] << "  |  " << endl <<
+
+		"|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl << endl <<
+		" _____ _____ _____   _____ _____ _____   _____ _____ _____" << endl <<
+		"|     |     |     | |     |     |     | |     |     |     |" << endl <<
+
+
+		"|  " <<  sudoku[28] << "  |  " <<  sudoku[29] << "  |  " <<  sudoku[30] << "  | |  " <<  sudoku[31] << "  |  " <<  sudoku[32] << "  |  " <<  sudoku[33] << "  | |  " <<  sudoku[34] << "  |  " <<  sudoku[35] << "  |  " <<  sudoku[36] << "  |  " << endl <<
+
+		"|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl <<
+		"|     |     |     | |     |     |     | |     |     |     |" << endl <<
+
+		"|  " <<  sudoku[37] << "  |  " <<  sudoku[38] << "  |  " <<  sudoku[39] << "  | |  " <<  sudoku[40] << "  |  " <<  sudoku[41] << "  |  " <<  sudoku[42] << "  | |  " <<  sudoku[43] << "  |  " <<  sudoku[44] << "  |  " <<  sudoku[45] << "  |  " << endl <<
+
+		"|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl <<
+		"|     |     |     | |     |     |     | |     |     |     |" << endl <<
+
+		"|  " <<  sudoku[46] << "  |  " <<  sudoku[47] << "  |  " <<  sudoku[48] << "  | |  " <<  sudoku[49] << "  |  " <<  sudoku[50] << "  |  " <<  sudoku[51] << "  | |  " <<  sudoku[52] << "  |  " <<  sudoku[53] << "  |  " <<  sudoku[54] << "  |  " << endl <<
+
+		"|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl << endl <<
+		" _____ _____ _____   _____ _____ _____   _____ _____ _____" << endl <<
+		"|     |     |     | |     |     |     | |     |     |     |" << endl <<
+
+		"|  " <<  sudoku[55] << "  |  " <<  sudoku[56] << "  |  " <<  sudoku[57] << "  | |  " <<  sudoku[58] << "  |  " <<  sudoku[59] << "  |  " <<  sudoku[60] << "  | |  " <<  sudoku[61] << "  |  " <<  sudoku[62] << "  |  " <<  sudoku[63] << "  |  " << endl <<
+
+		"|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl <<
+		"|     |     |     | |     |     |     | |     |     |     |" << endl <<
+
+		"|  " <<  sudoku[64] << "  |  " <<  sudoku[65] << "  |  " <<  sudoku[66] << "  | |  " <<  sudoku[67] << "  |  " <<  sudoku[68] << "  |  " <<  sudoku[69] << "  | |  " <<  sudoku[70] << "  |  " <<  sudoku[71] << "  |  " <<  sudoku[72] << "  |  " << endl <<
+
+		"|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl <<
+		"|     |     |     | |     |     |     | |     |     |     |" << endl <<
+
+		"|  " <<  sudoku[73] << "  |  " <<  sudoku[74] << "  |  " <<  sudoku[75] << "  | |  " <<  sudoku[76] << "  |  " <<  sudoku[77] << "  |  " <<  sudoku[78] << "  | |  " <<  sudoku[78] << "  |  " <<  sudoku[80] << "  |  " <<  sudoku[81] << "  |  " << endl <<
+		"|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|     " << endl;
+
+	
+		cout << "Where would you like to put your number?" << endl;
+		cin >> place;
+		cout << "What number would you like to put there?" << endl;
 		cin >> num;
-	}
-*/
 
+		int swap;
+		bool flag = false;
 	
-	char square[82] = { /* '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' , '10' , '11' , '12' , '13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81'}; */
-		'o', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '?', '@', '#', '$', '%', '^', '&', '*', '-', '~', '+', '=', ';', ':', '<', '>', '/', '(', ')', '.', ',', '`', '"', '}', '{', ']', '[', '_' };
+		if (place = 'A'){
+			while (false){
+				for (int i = 0; i < 9; i++){
+					swap = sudoku[1];
+					sudoku[1] = num;
+					
 
-	cout << " _____ _____ _____   _____ _____ _____   _____ _____ _____" << endl;
-	cout << "|     |     |     | |     |     |     | |     |     |     |     " << endl;
-	cout << "|  " << square[1] << "  |  " << square[2] << "  |  " << square[3] << "  | |  " << square[4] << "  |  " << square[5] << "  |  " << square[6] << "  | |  " << square[7] << "  |  " << square[8] << "  |  " << square[9] << "  |  " << endl;
 
-	cout << "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl;
-	cout << "|     |     |     | |     |     |     | |     |     |     |" << endl;
 
+
+					
+				}
+			} 
+		}
+if (place = 'B'){
+		do{
+
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				
+					swap = sudoku[2];
+					sudoku[2] = num;
+					
+
+
+					flag = true;
+				}
+			
+		} while (false);
+}
+if (place = 'C'){
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				
+					swap = sudoku[3];
+					sudoku[3] = num;
+
+
+					flag = true;
+				}
+			
+		} while (false);
+		}
+
+do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'D'){
+					swap = sudoku[4];
+					sudoku[4] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'E'){
+					swap = sudoku[5];
+					sudoku[5] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'F'){
+					swap = sudoku[6];
+					sudoku[6] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'G'){
+					swap = sudoku[7];
+					sudoku[7] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'H'){
+					swap = sudoku[8];
+					sudoku[8] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'I'){
+					swap = sudoku[9];
+					sudoku[9] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'J'){
+					swap = sudoku[10];
+					sudoku[10] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'K'){
+					swap = sudoku[11];
+					sudoku[11] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'L'){
+					swap = sudoku[12];
+					sudoku[12] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'M'){
+					swap = sudoku[13];
+					sudoku[13] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'N'){
+					swap = sudoku[14];
+					sudoku[14] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'O'){
+					swap = sudoku[15];
+					sudoku[15] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'P'){
+					swap = sudoku[16];
+					sudoku[16] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'Q'){
+					swap = sudoku[17];
+					sudoku[17] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'R'){
+					swap = sudoku[18];
+					sudoku[18] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'S'){
+					swap = sudoku[19];
+					sudoku[19] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'T'){
+					swap = sudoku[20];
+					sudoku[20] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'U'){
+					swap = sudoku[21];
+					sudoku[21] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'V'){
+					swap = sudoku[22];
+					sudoku[22] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'W'){
+					swap = sudoku[23];
+					sudoku[23] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'X'){
+					swap = sudoku[24];
+					sudoku[24] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'Y'){
+					swap = sudoku[25];
+					sudoku[25] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'Z'){
+					swap = sudoku[26];
+					sudoku[26] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'a'){
+					swap = sudoku[27];
+					sudoku[27] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'b'){
+					swap = sudoku[28];
+					sudoku[28] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'c'){
+					swap = sudoku[29];
+					sudoku[29] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'd'){
+					swap = sudoku[30];
+					sudoku[30] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'e'){
+					swap = sudoku[31];
+					sudoku[31] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'f'){
+					swap = sudoku[32];
+					sudoku[32] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'g'){
+					swap = sudoku[33];
+					sudoku[33] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'h'){
+					swap = sudoku[34];
+					sudoku[34] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'i'){
+					swap = sudoku[35];
+					sudoku[35] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'j'){
+					swap = sudoku[36];
+					sudoku[36] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'k'){
+					swap = sudoku[37];
+					sudoku[37] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'l'){
+					swap = sudoku[38];
+					sudoku[38] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'm'){
+					swap = sudoku[39];
+					sudoku[39] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'n'){
+					swap = sudoku[40];
+					sudoku[40] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'o'){
+					swap = sudoku[41];
+					sudoku[41] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'p'){
+					swap = sudoku[42];
+					sudoku[42] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'q'){
+					swap = sudoku[43];
+					sudoku[43] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'r'){
+					swap = sudoku[44];
+					sudoku[44] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 's'){
+					swap = sudoku[45];
+					sudoku[45] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 't'){
+					swap = sudoku[46];
+					sudoku[46] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'u'){
+					swap = sudoku[47];
+					sudoku[47] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'v'){
+					swap = sudoku[48];
+					sudoku[48] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'w'){
+					swap = sudoku[49];
+					sudoku[49] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'x'){
+					swap = sudoku[50];
+					sudoku[50] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'y'){
+					swap = sudoku[51];
+					sudoku[51] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = 'z'){
+					swap = sudoku[52];
+					sudoku[52] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '!'){
+					swap = sudoku[53];
+					sudoku[53] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '?'){
+					swap = sudoku[54];
+					sudoku[54] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '@'){
+					swap = sudoku[55];
+					sudoku[55] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '#'){
+					swap = sudoku[56];
+					sudoku[56] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '$'){
+					swap = sudoku[57];
+					sudoku[57] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '%'){
+					swap = sudoku[58];
+					sudoku[58] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '^'){
+					swap = sudoku[59];
+					sudoku[59] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '&'){
+					swap = sudoku[60];
+					sudoku[60] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '*'){
+					swap = sudoku[61];
+					sudoku[61] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '-'){
+					swap = sudoku[62];
+					sudoku[62] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '~'){
+					swap = sudoku[63];
+					sudoku[63] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '+'){
+					swap = sudoku[64];
+					sudoku[64] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '='){
+					swap = sudoku[65];
+					sudoku[65] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = ';'){
+					swap = sudoku[66];
+					sudoku[66] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = ':'){
+					swap = sudoku[67];
+					sudoku[67] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '<'){
+					swap = sudoku[68];
+					sudoku[68] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '>'){
+					swap = sudoku[69];
+					sudoku[69] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '/'){
+					swap = sudoku[70];
+					sudoku[70] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '('){
+					swap = sudoku[71];
+					sudoku[71] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = ')'){
+					swap = sudoku[72];
+					sudoku[72] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '.'){
+					swap = sudoku[73];
+					sudoku[73] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = ','){
+					swap = sudoku[74];
+					sudoku[74] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '`'){
+					swap = sudoku[75];
+					sudoku[75] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '"'){
+					swap = sudoku[76];
+					sudoku[76] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '}'){
+					swap = sudoku[77];
+					sudoku[77] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '{'){
+					swap = sudoku[78];
+					sudoku[78] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = ']'){
+					swap = sudoku[79];
+					sudoku[79] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '['){
+					swap = sudoku[80];
+					sudoku[80] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+		do{
+			flag = false;
+			for (int i = 0; i < 9; i++){
+				if (place = '_'){
+					swap = sudoku[81];
+					sudoku[81] = num;
+
+
+					flag = true;
+				}
+			}
+		} while (false);
+
+
+
+
+
+	}while (true);
+
+
+
+
+		cout << endl;
+
+		system("pause");
+		return 0;
 	
-	cout << "|  " << square[10] << "  |  " << square[11] << "  |  " << square[12] << "  | |  " << square[13] << "  |  " << square[14] << "  |  " << square[15] << "  | |  " << square[16] << "  |  " << square[17] << "  |  " << square[18] << "  |  " << endl;
-
-	cout << "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl;
-	cout << "|     |     |     | |     |     |     | |     |     |     |" << endl;
-
-
-	cout << "|  " << square[19] << "  |  " << square[20] << "  |  " << square[21] << "  | |  " << square[22] << "  |  " << square[23] << "  |  " << square[24] << "  | |  " << square[25] << "  |  " << square[26] << "  |  " << square[27] << "  |  " << endl;
-
-	cout << "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl;
-	cout << endl;
-	cout << " _____ _____ _____   _____ _____ _____   _____ _____ _____" << endl;
-	cout << "|     |     |     | |     |     |     | |     |     |     |" << endl;
-
-
-	cout << "|  " << square[28] << "  |  " << square[29] << "  |  " << square[30] << "  | |  " << square[31] << "  |  " << square[32] << "  |  " << square[33] << "  | |  " << square[34] << "  |  " << square[35] << "  |  " << square[36] << "  |  " << endl;
-
-	cout << "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl;
-	cout << "|     |     |     | |     |     |     | |     |     |     |" << endl;
-
-	cout << "|  " << square[37] << "  |  " << square[38] << "  |  " << square[39] << "  | |  " << square[40] << "  |  " << square[41] << "  |  " << square[42] << "  | |  " << square[43] << "  |  " << square[44] << "  |  " << square[45] << "  |  " << endl;
-
-	cout << "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl;
-	cout << "|     |     |     | |     |     |     | |     |     |     |" << endl;
-
-	cout << "|  " << square[46] << "  |  " << square[47] << "  |  " << square[48] << "  | |  " << square[49] << "  |  " << square[50] << "  |  " << square[51] << "  | |  " << square[52] << "  |  " << square[53] << "  |  " << square[54] << "  |  " << endl;
-
-	cout << "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl;
-	cout << endl;
-	cout << " _____ _____ _____   _____ _____ _____   _____ _____ _____" << endl;
-	cout << "|     |     |     | |     |     |     | |     |     |     |" << endl;
-
-	cout << "|  " << square[55] << "  |  " << square[56] << "  |  " << square[57] << "  | |  " << square[58] << "  |  " << square[59] << "  |  " << square[60] << "  | |  " << square[61] << "  |  " << square[62] << "  |  " << square[63] << "  |  " << endl;
-
-	cout << "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl;
-	cout << "|     |     |     | |     |     |     | |     |     |     |" << endl;
-
-	cout << "|  " << square[64] << "  |  " << square[65] << "  |  " << square[66] << "  | |  " << square[67] << "  |  " << square[68] << "  |  " << square[69] << "  | |  " << square[70] << "  |  " << square[71] << "  |  " << square[72] << "  |  " << endl;
-
-	cout << "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|" << endl;
-	cout << "|     |     |     | |     |     |     | |     |     |     |" << endl;
-
-	cout << "|  " << square[73] << "  |  " << square[74] << "  |  " << square[75] << "  | |  " << square[76] << "  |  " << square[77] << "  |  " << square[78] << "  | |  " << square[78] << "  |  " << square[80] << "  |  " << square[81] << "  |  " << endl;
-	cout << "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____|     " << endl;
-	
-
-
-
-	cout << endl;
-
-	system("pause");
-	return 0;
 }
