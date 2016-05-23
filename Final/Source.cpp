@@ -8,21 +8,30 @@
 using namespace std;
 
 int main(){
-	mciSendString("open \"play.mp3\" type mpegvideo alias mp3", NULL, 0, NULL);
+	mciSendString("open \"Ghibli Medley.mp3\" type mpegvideo alias mp3", NULL, 0, NULL);
 	mciSendString("play mp3 repeat", NULL, 0, NULL);
 
-	/*cout << "Welcome to Sudoku, the game for lonely people." << endl;
-	cout << "But I'm the one who had time to actually make it... " << endl;
-	cout << ":( " << endl;
-	cout << "ANYWAYS.." << endl;
-	cout << "Go ahead and start." << endl;
-	cout << endl;
-	*/
 
+
+	int swap;
+		bool flag = false;
 char place = 0;
-	char num = 0;
-	char  sudoku[82] = {'o', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '?', '@', '#', '$', '%', '^', '&', '*', '-', '~', '+', '=', ';', ':', '<', '>', '/', '(', ')', '.', ',', '`', '"', '}', '{', ']', '[', '_' };
-do{
+		char num = 0;
+	char sudoku[82] = {'o', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '?', '@', '#', '$', '%', '^', '&', '*', '-', '~', '+', '=', ';', ':', '<', '>', '/', '(', ')', '.', ',', '`', '"', '}', '{', ']', '[', '_' };
+	
+	do{
+		for (int i = 0; i < 82; i++){
+	if (num = sudoku[i]){
+	sudoku[i] != 'A' || 'B' || 'C' || 'D' || 'E'|| 'F'|| 'G'|| 'H'|| 'I'|| 'J'|| 'K'|| 'L'|| 'M'|| 'N'|| 'O'|| 'P'|| 'Q'|| 'R'|| 'S'|| 'T'|| 'U'|| 'V'|| 'W'|| 'X'|| 'Y'|| 'Z'|| 'a'|| 'b'|| 'c'|| 'd'|| 'e'|| 'f'|| 'g'|| 'h'|| 'i'|| 'j'|| 'k'|| 'l'|| 'm'|| 'n'|| 'o'|| 'p'|| 'q'|| 'r'|| 's'|| 't'|| 'u'|| 'v'|| 'w'|| 'x'|| 'y'|| 'z'|| '!'|| '?'|| '@'|| '#'|| '$'|| '%'|| '^'|| '&'|| '*'|| '-'|| '~'|| '+'|| '='|| ';'|| ':'|| '<'|| '>'|| '/'|| '('|| ')'|| '.'|| '||'|| '`'|| '"'|| '}'|| '{'|| ']'|| '['|| '_';
+	}
+	else{
+	sudoku[i] = 'A' || 'B' || 'C' || 'D' || 'E' || 'F' || 'G' || 'H' || 'I' || 'J' || 'K' || 'L' || 'M' || 'N' || 'O' || 'P' || 'Q' || 'R' || 'S' || 'T' || 'U' || 'V' || 'W' || 'X' || 'Y' || 'Z' || 'a' || 'b' || 'c' || 'd' || 'e' || 'f' || 'g' || 'h' || 'i' || 'j' || 'k' || 'l' || 'm' || 'n' || 'o' || 'p' || 'q' || 'r' || 's' || 't' || 'u' || 'v' || 'w' || 'x' || 'y' || 'z' || '!' || '?' || '@' || '#' || '$' || '%' || '^' || '&' || '*' || '-' || '~' || '+' || '=' || ';' || ':' || '<' || '>' || '/' || '(' || ')' || '.' || '||' || '`' || '"' || '}' || '{' || ']' || '[' || '_';
+	}
+	}
+	
+
+	
+	
 	
 	cout << " _____ _____ _____   _____ _____ _____   _____ _____ _____" << endl <<
 		"|     |     |     | |     |     |     | |     |     |     |     " << endl <<
@@ -80,23 +89,25 @@ do{
 		cout << "What number would you like to put there?" << endl;
 		cin >> num;
 
-		int swap;
-		bool flag = false;
+		
 	
 		if (place = 'A'){
-			while (false){
-				for (int i = 0; i < 9; i++){
-					swap = sudoku[1];
-					sudoku[1] = num;
+		do{
+			for (int i = 0; i < 9; i++){
+				swap = sudoku[1];
+				sudoku[1] = num;
+				num = swap;
+				
+			}
+			
+
+
+					flag = true;
+
 					
-
-
-
-
-					
-				}
-			} 
-		}
+				}while (false);
+		} 
+		
 if (place = 'B'){
 		do{
 
@@ -971,7 +982,7 @@ do{
 		do{
 			flag = false;
 			for (int i = 0; i < 9; i++){
-				if (place = ','){
+				if (place = '|'){
 					swap = sudoku[74];
 					sudoku[74] = num;
 
